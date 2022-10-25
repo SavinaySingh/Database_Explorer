@@ -1,8 +1,8 @@
 # <project title>
 
 ## Author
-Name: <first and last name>
-Student ID: <UTS student id>
+Name: Savinay Singh
+Student ID: 24591935
 
 ## Description
 <What your application does>
