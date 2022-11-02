@@ -1,9 +1,10 @@
+import sys
 import psycopg2
 from psycopg2 import OperationalError
 import pandas as pd
+import streamlit as st
 
-from src.database.queries import get_tables_list_query, get_table_data_query, get_table_schema_query
-
+from queries import get_tables_list_query, get_table_data_query, get_table_schema_query
 class PostgresConnector:
     """
     --------------------
@@ -23,9 +24,13 @@ class PostgresConnector:
     -> cursor (psycopg2._psycopg.connection.cursor): Postgres cursor for executing query (optional)
     -> excluded_schemas (list): List containing the names of internal Postgres schemas to be excluded from selection (information_schema, pg_catalog)
     """
-    def __init__(self, database="postgres", user='postgres', password='password', host='127.0.0.1', port='5432'):
-        => To be filled by student
-    
+
+    def __init__(self, database="postgres", user='postgres', password='May@1990', port='5433',host='127.0.0.1'):
+        self.database = database
+        self.user = user
+        self.password = password
+        self.port = port
+        self.host = host
     def open_connection(self):
         """
         --------------------
@@ -52,7 +57,19 @@ class PostgresConnector:
         -> (type): description
 
         """
-        => To be filled by student
+        try:
+            self.conn = psycopg2.connect(dbname=self.database, user=self.user, password=self.password, port=self.port, host=self.host)
+            st.success('Connection to database Established!', icon="✅")
+            with st.expander("Streamlite DataBase parameters"):
+                st.write("{")
+                st.write("menu text port :", self.port)
+                st.write("database :", self.database)
+                st.write("Menu password :",self.password)
+                st.write("Menu User :", self.user)
+                st.write("Connection : " , self.conn)
+        except OperationalError as err:
+            st.error(err)
+            sys.exit(53)
 
     def close_connection(self):
         """
@@ -80,14 +97,19 @@ class PostgresConnector:
         -> (type): description
 
         """
-        => To be filled by student
+        try:
+            self.conn.close()
+            print('Connection to database Closed!')
+        except OperationalError as err:
+            st.error(err)
+            sys.exit(53)
 
     def open_cursor(self):
         """
         --------------------
         Description
         --------------------
-        -> open_cursor (method): Class method that creates an active cursor to a Postgres database 
+        -> open_cursor (method): Class method that creates an active cursor to a Postgres database
 
         --------------------
         Parameters
@@ -108,14 +130,18 @@ class PostgresConnector:
         -> (type): description
 
         """
-        => To be filled by student
-        
+        try:
+            self.cursor = self.conn.cursor()
+            print('Cursor opened')
+        except OperationalError as err:
+            st.error(err)
+            sys.exit(53)
     def close_cursor(self):
         """
         --------------------
         Description
         --------------------
-        -> close_cursor (method): Class method that closes an active cursor to a Postgres database 
+        -> close_cursor (method): Class method that closes an active cursor to a Postgres database
 
         --------------------
         Parameters
@@ -136,7 +162,11 @@ class PostgresConnector:
         -> (type): description
 
         """
-        => To be filled by student
+        try:
+            self.cursor.close()
+        except OperationalError as err:
+            st.error(err)
+            sys.exit(53)
 
     def run_query(self, sql_query):
         """
@@ -164,8 +194,7 @@ class PostgresConnector:
         -> (type): description
 
         """
-        => To be filled by student
-        
+
     def list_tables(self):
         """
         --------------------
@@ -192,10 +221,26 @@ class PostgresConnector:
         -> (type): description
 
         """
-        => To be filled by student
+        try:
+            """
+            self.cursor.execute('select table_name from information_schema.tables')
+            """
+            self.cursor.execute(get_tables_list_query())
+            table_records = self.cursor.fetchall()
+            table_name_inp = st.selectbox('List of tables', options=table_records)
+            st.text(table_name_inp)
+            table = []
+            for i in table_records:
+                table.append(i[0])
+            return (table)
+        except OperationalError as err:
+            st.error(err)
+            sys.exit(53)
+
+
 
     def load_table(self, schema_name, table_name):
-        """
+        """"
         --------------------
         Description
         --------------------
@@ -220,7 +265,17 @@ class PostgresConnector:
         -> (type): description
 
         """
-        => To be filled by student
+
+        try:
+            """
+            load_table= pd.read_sql_query("select * from "+schema_name+"."+table_name+";", self.conn)
+            """
+            load_table = pd.read_sql_query(get_table_data_query('public','django_migrations'),self.conn)
+            print(load_table)
+            st.write(load_table)
+        except OperationalError as err:
+            st.error(err)
+            sys.exit(53)
 
     def get_table_schema(self, schema_name, table_name):
         """
@@ -248,4 +303,15 @@ class PostgresConnector:
         -> (type): description
 
         """
-        => To be filled by student
+        try:
+            """
+            get_table_schema = pd.read_sql_query("SELECT column_name, data_type FROM information_schema.columns "
+                                                 "WHERE  table_name = '"+table_name+"' AND table_schema = '"+schema_name+"';",
+                                                 self.conn)
+            """
+            get_table_schema = pd.read_sql_query(get_table_schema_query('public','django_migrations'), self.conn)
+            print(get_table_schema)
+            st.write(get_table_schema)
+        except OperationalError as err:
+            st.error(err)
+            sys.exit(53)
