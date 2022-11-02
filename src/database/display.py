@@ -1,9 +1,7 @@
 import streamlit as st
-
-from src.database.logics import PostgresConnector
-from src.dataframe.display import read_data
-
+from logics import PostgresConnector
 def display_db_connection_menu():
+    P = PostgresConnector()
     """
     --------------------
     Description
@@ -29,8 +27,17 @@ def display_db_connection_menu():
     -> (type): description
 
     """
-    => To be filled by student
-
+    st.header('Streamlit application for performing data exploration on a database')
+    st.title('Database connection details')
+    with st.form(key='databaseconnect'):
+        st.text_input(label="User Name", value=P.user)
+        st.text_input(label="Password", type="password",value = P.password)
+        st.text_input(label="DataBase Host",value=P.host)
+        st.text_input(label="DataBase Name", value=P.database)
+        st.text_input(label="DataBase Port", value=P.port)
+        submit_button = st.form_submit_button(label='Connect')
+        if submit_button:
+            connect_db()
 def connect_db():
     """
     --------------------
@@ -57,7 +64,15 @@ def connect_db():
     -> (type): description
 
     """
-    => To be filled by student
+
+    P1 = PostgresConnector()
+    P1.open_connection()
+    P1.open_cursor()
+    P1.list_tables()
+    P1.load_table('public','django_migrations')
+    P1.get_table_schema('public','django_migrations')
+    P1.close_cursor()
+    P1.close_connection()
 
 def display_table_selection():
     """
@@ -85,4 +100,8 @@ def display_table_selection():
     -> (type): description
 
     """
-    => To be filled by student
+
+
+
+
+
