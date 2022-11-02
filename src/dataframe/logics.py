@@ -294,23 +294,22 @@ class Dataset:
         --------------------
         Parameters
         --------------------
-        => To be filled by student
-        -> name (type): description
-
+        
+        self.df = the dataframe to compute the first rows
+        n = number of rows
+        
         --------------------
         Pseudo-Code
         --------------------
-        => To be filled by student
-        -> pseudo-code
+        
+        return df.first(n) #Here first returns the rows from the top of the dataframe
 
         --------------------
         Returns
         --------------------
-        => To be filled by student
-        -> (type): description
-
+        returns the first 5 rows of the dataframe of type object
         """
-        return df.head(n)
+        return self.df.head(n)
 
     def get_tail(self, n=5):
         """
@@ -322,23 +321,23 @@ class Dataset:
         --------------------
         Parameters
         --------------------
-        => To be filled by student
-        -> name (type): description
-
+        
+        self.df = the dataframe to compute the last rows
+        n = number of rows
+        
         --------------------
         Pseudo-Code
         --------------------
-        => To be filled by student
-        -> pseudo-code
+        
+        return df.tail(n) #Here tail returns the rows from the bottom of the dataframe
 
         --------------------
         Returns
         --------------------
-        => To be filled by student
-        -> (type): description
+        returns the last 5 rows of the dataframe of type object
 
         """
-        return df.tail(n)
+        return self.df.tail(n)
 
     def get_sample(self, n=5):
         """
@@ -350,23 +349,24 @@ class Dataset:
         --------------------
         Parameters
         --------------------
-        => To be filled by student
-        -> name (type): description
+        
+        self.df = the dataframe to compute random sample of rows
+        n = number of rows
 
         --------------------
         Pseudo-Code
         --------------------
-        => To be filled by student
-        -> pseudo-code
+        
+        return df.sample(n=n) #here sample() selects random rows and columns from a dataframe
 
         --------------------
         Returns
         --------------------
-        => To be filled by student
-        -> (type): description
+        
+        returns 5 random rows from the dataframe of type object
 
         """
-        return df.sample(n=n)
+        return self.df.sample(n=n)
 
     def get_summary_df(self):
         """
