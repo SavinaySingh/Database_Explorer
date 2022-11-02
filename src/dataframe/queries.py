@@ -8,20 +8,21 @@ def get_numeric_tables_query(schema_name, table_name):
     --------------------
     Parameters
     --------------------
-    => To be filled by student
-    -> name (type): description
+    schema_name = the schema name for the particular table
+    table_name = the name of the table whose numeric columns will be extracted
 
     --------------------
     Pseudo-Code
     --------------------
-    => To be filled by student
-    -> pseudo-code
+    
+    query 
+    return query
 
     --------------------
     Returns
     --------------------
-    => To be filled by student
-    -> (type): description
+    
+    returns a query of type string
 
     """
     query = ("""select col.table_schema,col.table_name,col.ordinal_position as col_id,col.column_name,col.data_type,col.numeric_precision,col.numeric_scale
@@ -50,23 +51,37 @@ def get_text_tables_query(schema_name, table_name):
     --------------------
     Parameters
     --------------------
-    => To be filled by student
-    -> name (type): description
+    schema_name = the schema name for the particular table
+    table_name = the name of the table whose text columns will be extracted
 
     --------------------
     Pseudo-Code
     --------------------
-    => To be filled by student
-    -> pseudo-code
+    
+    query 
+    return query
 
     --------------------
     Returns
     --------------------
-    => To be filled by student
-    -> (type): description
-
+    
+    returns a query of type string
     """
-    => To be filled by student
+    query = ("""select col.table_schema,col.table_name,col.ordinal_position as column_id,col.column_name,col.data_type,col.character_maximum_length as maximum_length
+        from information_schema.columns col
+        join information_schema.tables tab 
+        on tab.table_schema = col.table_schema
+        and tab.table_name = col.table_name
+        and tab.table_type = 'BASE TABLE'
+        where col.data_type in ('character varying', 'character','text', '"char"', 'name')
+        and col.table_schema not in ('information_schema', 'pg_catalog')
+        and tab.table_name = '{0}'
+        and tab.table_schema = '{1}'
+        order by col.table_schema,
+        col.table_name,
+        col.ordinal_position;""".format(table_name,schema_name))
+    
+    return query
 
 def get_date_tables_query(schema_name, table_name):
     """
@@ -78,20 +93,35 @@ def get_date_tables_query(schema_name, table_name):
     --------------------
     Parameters
     --------------------
-    => To be filled by student
-    -> name (type): description
+    schema_name = the schema name for the particular table
+    table_name = the name of the table whose datetime columns will be extracted
 
     --------------------
     Pseudo-Code
     --------------------
-    => To be filled by student
-    -> pseudo-code
+    
+    query 
+    return query
 
     --------------------
     Returns
     --------------------
-    => To be filled by student
-    -> (type): description
+    
+    returns a query of type string
 
     """
-    => To be filled by student
+    query = ("""select col.table_schema,col.table_name,col.ordinal_position as column_id,col.column_name,col.data_type,col.character_maximum_length as maximum_length
+        from information_schema.columns col
+        join information_schema.tables tab 
+        on tab.table_schema = col.table_schema
+        and tab.table_name = col.table_name
+        and tab.table_type = 'BASE TABLE'
+        where col.data_type in ('timestamp without time zone','timestamp with time zone','time with time zone','time without time zone','interval', 'date')
+        and col.table_schema not in ('information_schema', 'pg_catalog')
+        and tab.table_name = '{0}'
+        and tab.table_schema = '{1}'
+        order by col.table_schema,
+        col.table_name,
+        col.ordinal_position;""".format(table_name,schema_name))
+    
+    return query
