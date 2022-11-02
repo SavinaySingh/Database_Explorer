@@ -68,23 +68,27 @@ class Dataset:
         --------------------
         Parameters
         --------------------
-        => To be filled by student
-        -> name (type): description
+        self.df = the dataframe to check if it is emptry or none
 
         --------------------
         Pseudo-Code
         --------------------
-        => To be filled by student
-        -> pseudo-code
+        if df is empty:
+            return True
+        else:
+            return False
 
         --------------------
         Returns
         --------------------
-        => To be filled by student
-        -> (type): description
+        True : Boolean
+        False : Boolean
 
         """
-        => To be filled by student
+        if(self.df.empty):
+            return True
+        else:
+            return False
 
     def set_dimensions(self):
         """
@@ -96,24 +100,26 @@ class Dataset:
         --------------------
         Parameters
         --------------------
-        => To be filled by student
-        -> name (type): description
+        self.df = the dataframe to compute dimensions
 
         --------------------
         Pseudo-Code
         --------------------
-        => To be filled by student
-        -> pseudo-code
+        n_rows = length(df.axes[0]) #Here axes[0] refers to rows
+        n_cols = length(df.axes[1]) #Here axes[1] refers to cols
 
         --------------------
         Returns
         --------------------
-        => To be filled by student
-        -> (type): description
+        returns a print statement
 
         """
-        => To be filled by student
-
+        self.n_rows = len(df.axes[0])
+        self.n_cols = len(df.axes[1])
+        
+        print('The number of rows are',self.n_rows)
+        print('The number of columns are',self.n_cols)
+        
     def set_duplicates(self):
         """
         --------------------
@@ -124,24 +130,22 @@ class Dataset:
         --------------------
         Parameters
         --------------------
-        => To be filled by student
-        -> name (type): description
+        self.df = the dataframe to compute duplicated values
 
         --------------------
         Pseudo-Code
         --------------------
-        => To be filled by student
-        -> pseudo-code
+        n_duplicates = df[df.duplicated()] #The duplicated() checks the dataframe for duplicate values
 
         --------------------
         Returns
         --------------------
-        => To be filled by student
-        -> (type): description
+        returns n_duplicates of type object
 
         """
-        => To be filled by student
-
+        self.n_duplicates = df[df.duplicated()]
+        
+        return self.n_duplicates
     def set_missing(self):
         """
         --------------------
@@ -152,24 +156,24 @@ class Dataset:
         --------------------
         Parameters
         --------------------
-        => To be filled by student
-        -> name (type): description
+        
+        self.df = the dataframe to compute missing values
 
         --------------------
         Pseudo-Code
         --------------------
-        => To be filled by student
-        -> pseudo-code
+        n_missing = df.isna().sum().sum() #Here isna() checks for missing values in df and then sum() calculates the number of missing values
 
         --------------------
         Returns
         --------------------
-        => To be filled by student
-        -> (type): description
+        returns self.n_missing
 
         """
-        => To be filled by student
-
+        self.n_missing = df.isna().sum().sum()
+    
+        return self.n_missing
+    
     def set_numeric_columns(self):
         """
         --------------------
@@ -197,7 +201,16 @@ class Dataset:
         -> (type): description
 
         """
-        => To be filled by student
+        #database connection
+        
+        cur = conn.cursor()
+        # execute a statement
+
+        cur.execute(get_numeric_tables_query(self))
+        
+        self.num_cols = cur.fetchall()
+        
+        
 
     def set_text_columns(self):
         """
@@ -226,7 +239,14 @@ class Dataset:
         -> (type): description
 
         """
-        => To be filled by student
+        #database connection
+        
+        cur = conn.cursor()
+        # execute a statement
+
+        cur.execute(get_text_tables_query('public','categories')(self))
+        
+        self.num_cols = cur.fetchall()
 
     def set_date_columns(self):
         """
@@ -255,7 +275,14 @@ class Dataset:
         -> (type): description
 
         """
-        => To be filled by student
+        #database connection
+        
+        cur = conn.cursor()
+        # execute a statement
+
+        cur.execute(get_date_tables_query(self))
+        
+        self.num_cols = cur.fetchall()
 
     def get_head(self, n=5):
         """
@@ -283,7 +310,7 @@ class Dataset:
         -> (type): description
 
         """
-        => To be filled by student
+        return df.head(n)
 
     def get_tail(self, n=5):
         """
@@ -311,7 +338,7 @@ class Dataset:
         -> (type): description
 
         """
-        => To be filled by student
+        return df.tail(n)
 
     def get_sample(self, n=5):
         """
@@ -339,7 +366,7 @@ class Dataset:
         -> (type): description
 
         """
-        => To be filled by student
+        return df.sample(n=n)
 
     def get_summary_df(self):
         """
