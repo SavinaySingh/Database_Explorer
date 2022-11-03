@@ -28,7 +28,10 @@ class Dataset:
     -> date_cols (list): List of columns of datetime type (optional)
     """
     def __init__(self, schema_name=None, table_name=None, db=None, df=None):
-        => To be filled by student
+        self.schema_name = schema_name
+        self.table_name = table_name
+        self.db = db
+        self.df = df
 
     def set_data(self):
         """
