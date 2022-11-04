@@ -95,7 +95,9 @@ DSP_AT3_16-main/
                 logics.py
                 queries.py
 </pre>
+    
 ## Citations
+    
 <Mention authors and provide links code you source externally>
 <pre>
 1. PSYCOPG2. PyPI. (2022, October 25). Retrieved from https://pypi.org/project/psycopg2/ 
