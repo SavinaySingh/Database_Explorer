@@ -38,7 +38,6 @@ class NumericColumn:
             self.table_name=table_name
             self.col_name=col_name
             self.db=PostgresConnector()
-            self.db.open_connection()
             self.schema_name =self.db.database
             self.serie=None
             self.n_unique=None
@@ -355,7 +354,7 @@ class NumericColumn:
         --------------------
         Pseudo-Code
         --------------------
-        -> Calculate the dictionary of all the variables of class NumericColumn
+        -> Call all the class functions to initilize the class attributes and create the dictionary of all the variables
         -> Convert this dictionary into a dataframe object
         -> Use the streamlit's dataframe function to display the ouput in the streamlit application
         --------------------
@@ -363,6 +362,18 @@ class NumericColumn:
         --------------------
         None
         """
+        
+        self.db.open_connection()
+        self.set_data()
+        self.set_unique()
+        self.set_missing()
+        self.set_zeros()
+        self.set_negatives()
+        self.set_mean()
+        self.set_std()
+        self.set_min()
+        self.set_max()
+        self.set_median()
         dict_df={('Number of unique value of a serie',self.n_unique),
                     ('Number of missing values of a serie',self.n_missing),
                     ('Average value of a serie',self.col_mean),
@@ -374,5 +385,6 @@ class NumericColumn:
                     ('Number of times a serie has negative values',self.n_negatives)}
         df=pd.DataFrame(dict_df,columns=['Description','Value'])
         st.dataframe(df)
+        self.db.close_connection()
         return dict_df
 
