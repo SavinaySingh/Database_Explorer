@@ -23,7 +23,7 @@ def display_numerics():
     -> Create the sql query to select all the rows and columns from the table
     -> Use pandas.sql.io to store these rows into a dataframe
     -> Filter this dataframe to only store numeric columns
-    -> For each numerical column run all the functions of NumericColumn class to set the values of class attributes
+    -> For each numerical column run get_summary_df function of NumericColumn class to set the values of class attributes
     -> Display the output in Streamlit application
     --------------------
     Returns
@@ -38,16 +38,6 @@ def display_numerics():
     numeric_cols=list(newdf.columns)
     for cols in numeric_cols:
         numeric=NumericColumn(table_name='order_details',col_name=cols)
-        numeric.set_data()
-        numeric.set_unique()
-        numeric.set_missing()
-        numeric.set_zeros()
-        numeric.set_negatives()
-        numeric.set_mean()
-        numeric.set_std()
-        numeric.set_min()
-        numeric.set_max()
-        numeric.set_median()
         numeric.get_summary_df()
     
     
@@ -67,7 +57,7 @@ def display_numeric(col_name, i):
     Pseudo-Code
     --------------------
     -> Initialize the NumericColumn class object with one particular column
-    -> Run all the functions of NumericColumn class to set the values of class attributes
+    -> Run get_summary_df function of NumericColumn class to set the values of class attributes
     -> Display the output in Streamlit application
     --------------------
     Returns
@@ -75,14 +65,4 @@ def display_numeric(col_name, i):
     None
     """
     numeric=NumericColumn(table_name='order_details',col_name=col_name)
-    numeric.set_data()
-    numeric.set_unique()
-    numeric.set_missing()
-    numeric.set_zeros()
-    numeric.set_negatives()
-    numeric.set_mean()
-    numeric.set_std()
-    numeric.set_min()
-    numeric.set_max()
-    numeric.set_median()
     numeric.get_summary_df()
