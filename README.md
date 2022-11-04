@@ -1,8 +1,8 @@
 # STREAMLIT APPLICATION!
 
 ## Author
-Name: Savinay Singh
-Student ID: 24591935
+Name: Savinay Singh\
+Student ID: 24591935\
 
 ## Description
 <What your application does>
