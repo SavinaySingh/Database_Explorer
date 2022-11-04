@@ -22,12 +22,13 @@ streamlit==1.13.0
 
 ## How to Run the Program
 <Provide instructions and examples>
-To start the docker containers:\
-    >docker-compose build\
-    >docker-compose up\
-To stop the docker containers:\
+<pre>
+To start the docker containers:
+    >docker-compose build
+    >docker-compose up
+To stop the docker containers:
     >docker-compose down
-
+</pre>
 
 ## Project Structure
 <List all folders and files of this project and provide quick description for each of them>
