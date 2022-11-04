@@ -13,10 +13,12 @@ Student ID: 24591935
 <Provide a step-by-step description of how to get the development environment set and running.>
 <Which Python version you used>
 <Which packages and version you used>
-python==3.8.2\
-psycopg2-binary==2.9.5\
-pandas==1.5.1\
+<pre>
+python==3.8.2
+psycopg2-binary==2.9.5
+pandas==1.5.1
 streamlit==1.13.0
+</pre>
 
 ## How to Run the Program
 <Provide instructions and examples>
@@ -95,6 +97,7 @@ DSP_AT3_16-main/
 </pre>
 ## Citations
 <Mention authors and provide links code you source externally>
-1. PSYCOPG2. PyPI. (2022, October 25). Retrieved from https://pypi.org/project/psycopg2/ \
+<pre>
+1. PSYCOPG2. PyPI. (2022, October 25). Retrieved from https://pypi.org/project/psycopg2/ 
 2. Vega-Altair: Declarative visualization in python. Altair. (n.d.). Retrieved from https://altair-viz.github.io/ 
-
+</pre>
