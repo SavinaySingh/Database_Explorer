@@ -21,7 +21,7 @@ def display_numerics():
     Pseudo-Code
     --------------------
     -> Create the sql query to select all the rows and columns from the table
-    -> Use SQLIO library to store these rows into a dataframe
+    -> Use pandas.sql.io to store these rows into a dataframe
     -> Filter this dataframe to only store numeric columns
     -> For each numerical column run all the functions of NumericColumn class to set the values of class attributes
     -> Display the output in Streamlit application

@@ -67,7 +67,7 @@ class NumericColumn:
         --------------------
         Pseudo-Code
         --------------------
-        -> Use sqlio library to read sql into a dataframe
+        -> Use pandas.sql.io to read sql into a dataframe
         -> Extract the particular column and store in serie variable in the form of pandas series
         --------------------
         Returns
@@ -113,7 +113,7 @@ class NumericColumn:
         Pseudo-Code
         --------------------
         -> Get the sql query from get_unique_query function from queries file
-        -> Use SQLIO library to read this SQL query into a dataframe
+        -> Use pandas.sql.io to read this SQL query into a dataframe
         -> Set the value of n_unique as this dataframe's first element
         --------------------
         Returns
@@ -179,7 +179,7 @@ class NumericColumn:
         Pseudo-Code
         --------------------
         -> Get the sql query from get_negative_number_query function from queries file
-        -> Use SQLIO library to read this SQL query into a dataframe
+        -> Use pandas.sql.io to read this SQL query into a dataframe
         -> Set the value of n_negatives as as this dataframe's first element
         --------------------
         Returns
@@ -225,7 +225,7 @@ class NumericColumn:
         Pseudo-Code
         --------------------
         -> Get the sql query from get_std_query function from queries file
-        -> Use SQLIO library to read this SQL query into a dataframe
+        -> Use pandas.sql.io to read this SQL query into a dataframe
         -> Set the value of col_std as as this dataframe's first element
         --------------------
         Returns
