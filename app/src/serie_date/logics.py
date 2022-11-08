@@ -174,24 +174,18 @@ class DateColumn:
         --------------------
         Parameters
         --------------------
-        => To be filled by student
-        -> name (type): description
-
+        -> No Parameters
         --------------------
         Pseudo-Code
         --------------------
-        => To be filled by student
-        -> pseudo-code
-
+        -> Set the value of col_max as the max of serie
         --------------------
         Returns
         --------------------
-        => To be filled by student
-        -> (type): description
-
+        None
         """
-        => To be filled by student
-
+        self.col_max=self.serie.max()
+        
     def set_weekend(self):
         """
         --------------------
