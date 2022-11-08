@@ -31,10 +31,10 @@ def display_dates():
     table_name='order_details'
     sql='select * from {}'.format(table_name)
     dat = sqlio.read_sql_query(sql, db.conn)
-    date = ['datetime64','timestamp without time zone','timestamp with time zone','time with time zone','time without time zone','interval', 'date']
-    df = dat.select_dtypes(include=datetime64)
+    date_var= ['datetime64','timestamp without time zone','timestamp with time zone','time with time zone','time without time zone','interval', 'date']
+    df = dat.select_dtypes(include=date_var)
     date_cols=list(df.columns)
-    for cols in numeric_cols:
+    for cols in datecols_cols:
         numeric=DateColumn(table_name='order_details',col_name=cols)
         numeric.get_summary_df()
 
@@ -48,20 +48,17 @@ def display_date(col_name, i):
     --------------------
     Parameters
     --------------------
-    => To be filled by student
-    -> name (type): description
-
+    -> No parameter
     --------------------
     Pseudo-Code
     --------------------
-    => To be filled by student
-    -> pseudo-code
-
+    -> Initialize the DateColumn class object with one particular column
+    -> Run get_summary_df function of DateColumn class to set the values of class attributes
+    -> Display the output in Streamlit application
     --------------------
     Returns
     --------------------
-    => To be filled by student
-    -> (type): description
-
+    None
     """
-    => To be filled by student
+    date_var=DateColumn(table_name='order_details',col_name=col_name)
+    date_var.get_summary_df()
