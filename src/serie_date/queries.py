@@ -8,20 +8,21 @@ def get_min_date_query(schema_name, table_name, col_name):
     --------------------
     Parameters
     --------------------
-    => To be filled by student
-    -> name (type): description
+    -> schema_name (str): Name of the Database
+    -> table_name (str): Name of the Table
+    -> schema_name (str): Name of the Column
 
     --------------------
     Pseudo-Code
     --------------------
-    => To be filled by student
-    -> pseudo-code
+    ->Check if the length of the arguments is not zero or the arguments are not None
+    ->Return the SQL query
 
     --------------------
     Returns
     --------------------
-    => To be filled by student
-    -> (type): description
+    -> output (str): String for sql query
+
 
     """
     if len(schema_name)==0 and len(table_name)==0 and len(col_name)==0:
@@ -53,20 +54,21 @@ def get_weekend_count_query(schema_name, table_name, col_name):
     --------------------
     Parameters
     --------------------
-    => To be filled by student
-    -> name (type): description
+    -> schema_name (str): Name of the Database
+    -> table_name (str): Name of the Table
+    -> schema_name (str): Name of the Column
 
     --------------------
     Pseudo-Code
     --------------------
-    => To be filled by student
-    -> pseudo-code
+    ->Check if the length of the arguments is not zero or the arguments are not None
+    ->Return the SQL query
 
     --------------------
     Returns
     --------------------
-    => To be filled by student
-    -> (type): description
+    -> output (str): String for sql query
+
 
     """
     if len(schema_name)==0 and len(table_name)==0 and len(col_name)==0:
@@ -98,20 +100,19 @@ def get_1900_count_query(schema_name, table_name, col_name):
     --------------------
     Parameters
     --------------------
-    => To be filled by student
-    -> name (type): description
-
+    -> schema_name (str): Name of the Database
+    -> table_name (str): Name of the Table
+    -> schema_name (str): Name of the Column
     --------------------
     Pseudo-Code
     --------------------
-    => To be filled by student
-    -> pseudo-code
+    ->Check if the length of the arguments is not zero or the arguments are not None
+    ->Return the SQL query
 
     --------------------
     Returns
     --------------------
-    => To be filled by student
-    -> (type): description
+    -> output (str): String for sql query
 
     """
     if len(schema_name)==0 and len(table_name)==0 and len(col_name)==0:
