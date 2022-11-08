@@ -3,6 +3,8 @@
 ## Author
 Name: Savinay Singh\
 Student ID: 24591935
+Name: Prinston Mascarenhas\
+Student ID: 24587331
 
 ## Description
 <What your application does>
