@@ -34,8 +34,22 @@ class DateColumn:
 
     """
     def __init__(self, schema_name=None, table_name=None, col_name=None, db=None, serie=None):
-        
+        self.table_name=table_name
+        self.col_name=col_name
+        self.db=PostgresConnector()
         self.schema_name = self.db.database
+        self.serie = None
+        self.n_unique = None
+        self.n_missing = None
+        self.col_min = None
+        self.col_max = None
+        self.n_weekend = None
+        self.n_weekday = None
+        self.n_future = None
+        self.n_empty_1900 = None
+        self.n_empty_1970 = None
+        self.n_barchart = None
+        self.n_frequent = None
         
 
     def set_data(self):
