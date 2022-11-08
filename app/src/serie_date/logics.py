@@ -1,7 +1,8 @@
 import streamlit as st
 import pandas as pd
 import altair as alt
-
+import pandas.io.sql as sqlio
+import numpy as np
 from src.database.logics import PostgresConnector
 from src.serie_date.queries import get_min_date_query, get_weekend_count_query, get_1900_count_query
 
