@@ -192,10 +192,7 @@ class DateColumn:
         Description
         --------------------
         -> set_weekend (method): Class method that computes the number of times a serie has dates falling during weekend using a SQL query (get_weekend_count_query())
-
-        --------------------
-        Parameters
-        --------------------
+        
         --------------------
         Parameters
         --------------------
@@ -264,23 +261,15 @@ class DateColumn:
         --------------------
         Parameters
         --------------------
-        => To be filled by student
-        -> name (type): description
-
-        --------------------
-        Pseudo-Code
-        --------------------
-        => To be filled by student
-        -> pseudo-code
-
+        -> Get the sql query from get_1900_count_query function from queries file
+        -> Use pandas.sql.io to read this SQL query into a dataframe and seet the value of self.n_empty_1900
         --------------------
         Returns
         --------------------
-        => To be filled by student
-        -> (type): description
-
+        None
         """
-        => To be filled by student
+        sql=get_1900_count_query(self.db.database,self.table_name,self.col_name)
+        self.n_empty_1900=sqlio.read_sql_query(sql,self.db.conn)
 
     def set_empty_1970(self):
         """
