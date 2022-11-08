@@ -326,23 +326,17 @@ class DateColumn:
         --------------------
         Parameters
         --------------------
-        => To be filled by student
-        -> name (type): description
-
+        -> end (int) : Threshold of frequency
         --------------------
         Pseudo-Code
         --------------------
-        => To be filled by student
-        -> pseudo-code
-
+        -> Calculate the most frequent value of serie
+        -> Storing the dataframe of the most frequent value
         --------------------
         Returns
         --------------------
-        => To be filled by student
-        -> (type): description
-
         """
-        => To be filled by student
+        self.n_frequent=pd.DataFrame([self.serie.value_counts().index[0]],columns=['Most Frequent Value'])
 
     def get_summary_df(self):
         """
@@ -354,20 +348,16 @@ class DateColumn:
         --------------------
         Parameters
         --------------------
-        => To be filled by student
-        -> name (type): description
-
+        No Parameters
         --------------------
         Pseudo-Code
         --------------------
-        => To be filled by student
-        -> pseudo-code
-
+        -> Call all the class functions to initilize the class attributes and create the dictionary of all the variables
+        -> Convert this dictionary into a dataframe object
+        -> Use the streamlit's dataframe function to display the ouput in the streamlit application
         --------------------
         Returns
         --------------------
-        => To be filled by student
-        -> (type): description
-
+        None
         """
-        => To be filled by student
+        
