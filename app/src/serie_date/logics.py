@@ -131,23 +131,17 @@ class DateColumn:
         --------------------
         Parameters
         --------------------
-        => To be filled by student
-        -> name (type): description
-
+        -> No Parameters
         --------------------
         Pseudo-Code
         --------------------
-        => To be filled by student
-        -> pseudo-code
-
+        -> Set the value of n_missing as the length of serie where value of serie is null
         --------------------
         Returns
         --------------------
-        => To be filled by student
-        -> (type): description
-
+        None
         """
-        => To be filled by student
+        self.n_missing=len(self.serie[self.serie==np.nan])
 
     def set_min(self):
         """
