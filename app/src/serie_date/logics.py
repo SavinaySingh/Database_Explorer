@@ -219,23 +219,18 @@ class DateColumn:
         --------------------
         Parameters
         --------------------
-        => To be filled by student
-        -> name (type): description
-
+        -> No Parameters
         --------------------
         Pseudo-Code
         --------------------
-        => To be filled by student
-        -> pseudo-code
-
+        -> Set the value of self.n_weekday
         --------------------
         Returns
         --------------------
-        => To be filled by student
-        -> (type): description
+        None
 
         """
-        self.n_weekday = len(self.serie.dt.dayofweek)
+        self.n_weekday = len(self.serie[self.serie.dt.dayofweek])
 
     def set_future(self):
         """
@@ -247,23 +242,17 @@ class DateColumn:
         --------------------
         Parameters
         --------------------
-        => To be filled by student
-        -> name (type): description
-
+        -> No Parameters
         --------------------
         Pseudo-Code
         --------------------
-        => To be filled by student
-        -> pseudo-code
-
+        -> Set the value of n_future
         --------------------
         Returns
         --------------------
-        => To be filled by student
-        -> (type): description
-
+        None
         """
-        => To be filled by student
+        self.n_future = len(self.serie(pd.to_datetime("today").strftime("%m/%d/%Y")))
 
     def set_empty_1900(self):
         """
