@@ -25,7 +25,13 @@ def get_numeric_tables_query(schema_name, table_name):
     returns a query of type string
 
     """
-    query = ("""select col.table_schema,col.table_name,col.ordinal_position as col_id,col.column_name,col.data_type,col.numeric_precision,col.numeric_scale
+    if len(schema_name)==0 and len(table_name)==0:
+        print('No arguments')
+        sys.exit(0)
+    elif table_name==None:
+        print('Empty table name string')
+        sys.exit(2)
+    return ("""select col.table_schema,col.table_name,col.ordinal_position as col_id,col.column_name,col.data_type,col.numeric_precision,col.numeric_scale
         from information_schema.columns col
         join information_schema.tables tab 
         on tab.table_schema = col.table_schema
@@ -39,7 +45,7 @@ def get_numeric_tables_query(schema_name, table_name):
         col.table_name,
         col.ordinal_position;""".format(table_name,schema_name))
     
-    return query
+    
 
 def get_text_tables_query(schema_name, table_name):
     """
@@ -67,7 +73,13 @@ def get_text_tables_query(schema_name, table_name):
     
     returns a query of type string
     """
-    query = ("""select col.table_schema,col.table_name,col.ordinal_position as column_id,col.column_name,col.data_type,col.character_maximum_length as maximum_length
+    if len(schema_name)==0 and len(table_name)==0:
+        print('No arguments')
+        sys.exit(0)
+    elif table_name==None:
+        print('Empty table name string')
+        sys.exit(2)
+    return ("""select col.table_schema,col.table_name,col.ordinal_position as column_id,col.column_name,col.data_type,col.character_maximum_length as maximum_length
         from information_schema.columns col
         join information_schema.tables tab 
         on tab.table_schema = col.table_schema
@@ -81,7 +93,7 @@ def get_text_tables_query(schema_name, table_name):
         col.table_name,
         col.ordinal_position;""".format(table_name,schema_name))
     
-    return query
+    
 
 def get_date_tables_query(schema_name, table_name):
     """
@@ -110,7 +122,13 @@ def get_date_tables_query(schema_name, table_name):
     returns a query of type string
 
     """
-    query = ("""select col.table_schema,col.table_name,col.ordinal_position as column_id,col.column_name,col.data_type,col.character_maximum_length as maximum_length
+    if len(schema_name)==0 and len(table_name)==0:
+        print('No arguments')
+        sys.exit(0)
+    elif table_name==None:
+        print('Empty table name string')
+        sys.exit(2)
+    return ("""select col.table_schema,col.table_name,col.ordinal_position as column_id,col.column_name,col.data_type,col.character_maximum_length as maximum_length
         from information_schema.columns col
         join information_schema.tables tab 
         on tab.table_schema = col.table_schema
