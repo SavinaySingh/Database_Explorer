@@ -304,23 +304,17 @@ class DateColumn:
         --------------------
         Parameters
         --------------------
-        => To be filled by student
-        -> name (type): description
-
+        ->No Parameters
         --------------------
         Pseudo-Code
         --------------------
-        => To be filled by student
-        -> pseudo-code
-
+        -> Store the Altair barchart displaying the count for each value of a serie
         --------------------
         Returns
         --------------------
-        => To be filled by student
-        -> (type): description
 
         """
-        => To be filled by student
+        self.n_barchart = alt.Chart(source).mark_bar().encode(x = self.col_name,y = 'count()')
       
     def set_frequent(self, end=20):
         """
