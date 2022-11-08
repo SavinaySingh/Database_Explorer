@@ -281,24 +281,19 @@ class DateColumn:
         --------------------
         Parameters
         --------------------
-        => To be filled by student
-        -> name (type): description
-
+        -> No Parameters
         --------------------
         Pseudo-Code
         --------------------
-        => To be filled by student
-        -> pseudo-code
-
+        -> Set the value of n_empty_1970
         --------------------
         Returns
         --------------------
-        => To be filled by student
-        -> (type): description
+        None
 
         """
-        => To be filled by student
-
+        self.n_empty_1970 = len(self.serie.isin([''1970-01-01']))
+`        
     def set_barchart(self):  
         """
         --------------------
