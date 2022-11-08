@@ -27,11 +27,18 @@ class Dataset:
     -> text_cols (list): List of columns of text type (optional)
     -> date_cols (list): List of columns of datetime type (optional)
     """
-    def __init__(self, schema_name=None, table_name=None, db=None, df=None):
+    def __init__(self, schema_name='public', table_name='order_details', db=None, df=None):
         self.schema_name = schema_name
         self.table_name = table_name
-        self.db = db
+        self.db = PostgresConnector()
         self.df = df
+        self.n_rows = None
+        self.n_cols= None
+        self.n_duplicates = None
+        self.n_missing = None
+        self.num_cols = None
+        self.text_cols = None
+        self.date_cols = None
 
     def set_data(self):
         """
@@ -43,14 +50,12 @@ class Dataset:
         --------------------
         Parameters
         --------------------
-        => To be filled by student
-        -> name (type): description
+        No Parameters
 
         --------------------
         Pseudo-Code
         --------------------
-        => To be filled by student
-        -> pseudo-code
+
 
         --------------------
         Returns
@@ -59,7 +64,8 @@ class Dataset:
         -> (type): description
 
         """
-        => To be filled by student
+        self.df = sqlio.read_sql_query('select {} from {}'.format(self.col_name,self.table_name), self.db.conn)[self.col_name]
+
         
     def is_df_none(self):
         """
@@ -120,8 +126,8 @@ class Dataset:
         self.n_rows = len(df.axes[0])
         self.n_cols = len(df.axes[1])
         
-        print('The number of rows are',self.n_rows)
-        print('The number of columns are',self.n_cols)
+        #print('The number of rows are',self.n_rows)
+        #print('The number of columns are',self.n_cols)
         
     def set_duplicates(self):
         """
@@ -206,12 +212,6 @@ class Dataset:
         """
         #database connection
         
-        cur = conn.cursor()
-        # execute a statement
-
-        cur.execute(get_numeric_tables_query(self))
-        
-        self.num_cols = cur.fetchall()
         
         
 
