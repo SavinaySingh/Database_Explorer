@@ -34,7 +34,9 @@ class DateColumn:
 
     """
     def __init__(self, schema_name=None, table_name=None, col_name=None, db=None, serie=None):
-        => To be filled by student
+        
+        self.schema_name = self.db.database
+        
 
     def set_data(self):
         """
