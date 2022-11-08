@@ -62,23 +62,19 @@ class DateColumn:
         --------------------
         Parameters
         --------------------
-        => To be filled by student
-        -> name (type): description
-
+        -> No Parameters
         --------------------
         Pseudo-Code
         --------------------
-        => To be filled by student
-        -> pseudo-code
-
+        -> Use pandas.sql.io to read sql into a dataframe
+        -> Extract the particular column and store in serie variable in the form of pandas series
         --------------------
         Returns
         --------------------
-        => To be filled by student
-        -> (type): description
-
+        -> None
         """
-        => To be filled by student
+        self.serie = sqlio.read_sql_query('select {} from {}'.format(self.col_name,self.table_name), self.db.conn)[self.col_name]
+
 
     def is_serie_none(self):
         """
@@ -90,23 +86,18 @@ class DateColumn:
         --------------------
         Parameters
         --------------------
-        => To be filled by student
-        -> name (type): description
-
+        -> No Parameters
         --------------------
         Pseudo-Code
         --------------------
-        => To be filled by student
-        -> pseudo-code
-
+        -> Check if the type of serie variable is equal to the type of pandas series
         --------------------
         Returns
         --------------------
-        => To be filled by student
-        -> (type): description
-
+        output (bool) : Boolean for whether serie variable is None or of type pandas series
         """
-        => To be filled by student
+        return str(type(self.serie))!="<class 'pandas.core.series.Series'>"
+        
 
     def set_unique(self):
         """
@@ -118,24 +109,18 @@ class DateColumn:
         --------------------
         Parameters
         --------------------
-        => To be filled by student
-        -> name (type): description
-
+        -> No Parameters
         --------------------
         Pseudo-Code
         --------------------
-        => To be filled by student
-        -> pseudo-code
-
+        -> Set the value of n_unique as this dataframe's first element
         --------------------
         Returns
         --------------------
-        => To be filled by student
-        -> (type): description
-
+        None
         """
-        => To be filled by student
-
+        self.n_unique = len(unique(self.serie)) 
+        
     def set_missing(self):
         """
         --------------------
