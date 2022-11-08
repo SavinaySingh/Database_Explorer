@@ -24,7 +24,12 @@ def get_min_date_query(schema_name, table_name, col_name):
     -> (type): description
 
     """
-    => To be filled by student
+    query = """
+        select min({col_name}) as EarliestDate
+        from {table_name}
+    """.format(col_name = col_name,table_name = table_name)
+
+    return query
 
 def get_weekend_count_query(schema_name, table_name, col_name):
     """
@@ -52,7 +57,12 @@ def get_weekend_count_query(schema_name, table_name, col_name):
     -> (type): description
 
     """
-    => To be filled by student
+    query = """ SELECT count({col_name})
+                FROM {table_name} 
+                WHERE EXTRACT(week FROM {col_name}) Not IN (0,5)
+                """.format(col_name = col_name,table_name = table_name)
+    
+    return query
 
 def get_1900_count_query(schema_name, table_name, col_name):
     """
@@ -80,4 +90,10 @@ def get_1900_count_query(schema_name, table_name, col_name):
     -> (type): description
 
     """
-    => To be filled by student
+    query = """
+                select count({col_name})
+                from {table_name} 
+                where {col_name} = '1900-01-01'
+    """.format(col_name = col_name,table_name = table_name)
+
+    return query 
