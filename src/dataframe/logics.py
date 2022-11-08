@@ -194,25 +194,20 @@ class Dataset:
         --------------------
         Parameters
         --------------------
-        => To be filled by student
-        -> name (type): description
-
+        No Parameters
         --------------------
         Pseudo-Code
         --------------------
-        => To be filled by student
-        -> pseudo-code
-
+        -> Gets the sql query from get_numeric_table_query and stores it in sql variable
+        -> Use pandas.sql.io to read the query into a dataframe and sets the value of self.num_cols
         --------------------
         Returns
         --------------------
-        => To be filled by student
-        -> (type): description
-
+        None
+        
         """
-        #database connection
-        
-        
+        sql = get_numeric_table_query(self.schema_name,self.table_name)
+        self.num_cols = sqlio.read_sql_query(sql,self.db.conn)
         
 
     def set_text_columns(self):
@@ -226,31 +221,23 @@ class Dataset:
         --------------------
         Parameters
         --------------------
-        => To be filled by student
-        -> name (type): description
-
+        No Parameters
         --------------------
         Pseudo-Code
         --------------------
-        => To be filled by student
-        -> pseudo-code
-
+        -> Gets the sql query from get_text_table_query and stores it in sql variable
+        -> Use pandas.sql.io to read the query into a dataframe and sets the value of self.text_cols
+        
         --------------------
         Returns
         --------------------
-        => To be filled by student
-        -> (type): description
-
+        None
+        
         """
-        #database connection
+        sql = get_text_table_query(self.schema_name,self.table_name)
+        self.num_cols = sqlio.read_sql_query(sql,self.db.conn)
         
-        cur = conn.cursor()
-        # execute a statement
-
-        cur.execute(get_text_tables_query('public','categories')(self))
         
-        self.num_cols = cur.fetchall()
-
     def set_date_columns(self):
         """
         --------------------
@@ -262,31 +249,21 @@ class Dataset:
         --------------------
         Parameters
         --------------------
-        => To be filled by student
-        -> name (type): description
-
+        None
         --------------------
         Pseudo-Code
         --------------------
-        => To be filled by student
-        -> pseudo-code
-
+        -> Gets the sql query from get_date_table_query and stores it in sql variable
+        -> Use pandas.sql.io to read the query into a dataframe and sets the value of self.text_cols
+        
         --------------------
         Returns
         --------------------
-        => To be filled by student
-        -> (type): description
-
+        None
         """
-        #database connection
+        sql = get_date_table_query(self.schema_name,self.table_name)
+        self.num_cols = sqlio.read_sql_query(sql,self.db.conn)
         
-        cur = conn.cursor()
-        # execute a statement
-
-        cur.execute(get_date_tables_query(self))
-        
-        self.num_cols = cur.fetchall()
-
     def get_head(self, n=5):
         """
         --------------------
@@ -381,20 +358,40 @@ class Dataset:
         --------------------
         Parameters
         --------------------
-        => To be filled by student
-        -> name (type): description
-
+        No Parameters
         --------------------
         Pseudo-Code
         --------------------
-        => To be filled by student
-        -> pseudo-code
+        -> Calls all the class functions to initialize the class attributes and create the dictionary of all the variables
+        -> Convert this dictionary into a dataframe object
+        -> Use the streamlit's dataframe function to display the ouput in the streamlit application
 
         --------------------
         Returns
         --------------------
-        => To be filled by student
-        -> (type): description
-
+        None
+        
         """
-        => To be filled by student
+        self.db.open_connection()
+        self.set_data()
+        self.is_df_none()
+        self.set_dimensions()
+        self.set_duplicates()
+        self.set_missing()
+        self.set_numeric_columns()
+        self.set_text_columns()
+        self.set_date_columns()
+        self.get_head()
+        self.get_tail()
+        self.get_sample()
+        dict = {('Number of rows and columns are',(self.n_rows,self.n_cols)),
+                ('Number of duplicated rows of dataset are',self.n_duplicates),
+                ('Number of missing values in the dataset are',self.n_missing),
+                ('List of columns of numeric type are',self.num_cols),
+                ('List of columns of text type are',self.text_cols),
+                ('List of columns of date type are',self.date_cols)}
+        df=pd.DataFrame(dict_df,columns=['Description','Value'])
+        st.dataframe(df)
+        self.db.close_connection()
+        return dict_df
+        
