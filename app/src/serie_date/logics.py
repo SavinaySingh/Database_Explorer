@@ -360,4 +360,32 @@ class DateColumn:
         --------------------
         None
         """
+        self.db.open_connection()
+        self.set_data()
+        self.is_serie_none()
+        self.set_unique()
+        self.set_missing()
+        self.set_min()
+        self.set_max()
+        self.set_weekend()
+        self.set_weekday()
+        self.set_future()
+        self.set_empty_1900()
+        self.set_empty_1970()
+        self.barchart()
+        self.set_frequent()
+        dict_df = {('Number of unique values of the series are',self.n_unique),
+                   ('Number of missing values of the series are',self.n_missing),
+                   ('Minimum value of the series is',self.col_min),
+                   ('Maximum value of the series is',self.col_max),
+                   ('Number of times the series has dates falling during weekend',self.n_weekend),
+                   ('Number of times the series has dates not falling during weekend',self.n_weekday),
+                   ('Number of times the series has dates falling in the future',self.n_future),
+                   ('Number of times series has dates equal to '1900-01-01',self.n_empty_1900),
+                   ('Number of times series has dates equal to '1970-01-01',self.n_empty_1970)}
+        df=pd.DataFrame(dict_df,columns=['Description','Value'])
+        st.dataframe(df)
+        self.db.close_connection()
+        return dict_df
+                    
         
