@@ -1,5 +1,5 @@
 import streamlit as st
-from logics import PostgresConnector
+from src.database.logics import PostgresConnector
 def display_db_connection_menu():
     P = PostgresConnector()
     """
@@ -11,19 +11,20 @@ def display_db_connection_menu():
     --------------------
     Parameters
     --------------------
-    => To be filled by student
+    => User Name , Password, Database Host , Database port 
     -> name (type): description
 
     --------------------
     Pseudo-Code
     --------------------
-    => To be filled by student
+    => the form is prefilled by the parameters to connect the database and 
+    connect to submit the form by validating the creditials
     -> pseudo-code
 
     --------------------
     Returns
     --------------------
-    => To be filled by student
+    => prefilled form with the connect credentials
     -> (type): description
 
     """
