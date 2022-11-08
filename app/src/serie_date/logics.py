@@ -196,23 +196,18 @@ class DateColumn:
         --------------------
         Parameters
         --------------------
-        => To be filled by student
-        -> name (type): description
-
         --------------------
-        Pseudo-Code
+        Parameters
         --------------------
-        => To be filled by student
-        -> pseudo-code
-
+        -> Get the sql query from get_weekend_count_query function from queries file
+        -> Use pandas.sql.io to read this SQL query into a dataframe and seet the value of self.n_weekend
         --------------------
         Returns
         --------------------
-        => To be filled by student
-        -> (type): description
-
+        None
         """
-        => To be filled by student
+        sql=get_weekend_count_query(self.db.database,self.table_name,self.col_name)
+        self.n_weekend=sqlio.read_sql_query(sql,self.db.conn)
 
     def set_weekday(self):
         """
