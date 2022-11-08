@@ -235,7 +235,7 @@ class DateColumn:
         -> (type): description
 
         """
-        => To be filled by student
+        self.n_weekday = len(self.serie.dt.dayofweek)
 
     def set_future(self):
         """
