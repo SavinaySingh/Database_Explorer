@@ -28,9 +28,9 @@ class Dataset:
     -> date_cols (list): List of columns of datetime type (optional)
     """
     def __init__(self, schema_name='public', table_name='order_details', db=None, df=None):
-        self.schema_name = schema_name
         self.table_name = table_name
         self.db = PostgresConnector()
+        self.schema_name = self.db.database
         self.df = df
         self.n_rows = None
         self.n_cols= None
