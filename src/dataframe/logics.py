@@ -114,8 +114,8 @@ class Dataset:
         --------------------
         Pseudo-Code
         --------------------
-        n_rows = length(df.axes[0]) #Here axes[0] refers to rows
-        n_cols = length(df.axes[1]) #Here axes[1] refers to cols
+        n_rows = length(self.df.axes[0]) #Here axes[0] refers to rows
+        n_cols = length(self.df.axes[1]) #Here axes[1] refers to cols
 
         --------------------
         Returns
@@ -123,8 +123,8 @@ class Dataset:
         returns a print statement
 
         """
-        self.n_rows = len(df.axes[0])
-        self.n_cols = len(df.axes[1])
+        self.n_rows = len(self.df.axes[0])
+        self.n_cols = len(self.df.axes[1])
         
         #print('The number of rows are',self.n_rows)
         #print('The number of columns are',self.n_cols)
@@ -144,7 +144,7 @@ class Dataset:
         --------------------
         Pseudo-Code
         --------------------
-        n_duplicates = df[df.duplicated()] #The duplicated() checks the dataframe for duplicate values
+        n_duplicates = self.df[self.df.duplicated()] #The duplicated() checks the dataframe for duplicate values
 
         --------------------
         Returns
@@ -152,7 +152,7 @@ class Dataset:
         returns n_duplicates of type object
 
         """
-        self.n_duplicates = df[df.duplicated()]
+        self.n_duplicates = self.df[self.df.duplicated()]
         
         return self.n_duplicates
     def set_missing(self):
@@ -171,7 +171,7 @@ class Dataset:
         --------------------
         Pseudo-Code
         --------------------
-        n_missing = df.isna().sum().sum() #Here isna() checks for missing values in df and then sum() calculates the number of missing values
+        n_missing = self.df.isna().sum().sum() #Here isna() checks for missing values in df and then sum() calculates the number of missing values
 
         --------------------
         Returns
@@ -179,7 +179,7 @@ class Dataset:
         returns self.n_missing
 
         """
-        self.n_missing = df.isna().sum().sum()
+        self.n_missing = self.df.isna().sum().sum()
     
         return self.n_missing
     
