@@ -119,7 +119,7 @@ class DateColumn:
         --------------------
         None
         """
-        self.n_unique = len(unique(self.serie)) 
+        self.n_unique = self.serie.nunique 
         
     def set_missing(self):
         """
