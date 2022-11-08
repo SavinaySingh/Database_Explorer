@@ -40,23 +40,21 @@ def display_overall():
     --------------------
     Parameters
     --------------------
-    => To be filled by student
-    -> name (type): description
-
+    -> No parameter
     --------------------
     Pseudo-Code
     --------------------
-    => To be filled by student
-    -> pseudo-code
-
+    -> Initialize the Dataset class object with one particular column
+    -> Run get_summary_df function of Dataset class to set the values of class attributes
+    -> Display the output in Streamlit application
     --------------------
     Returns
     --------------------
-    => To be filled by student
-    -> (type): description
+    None
 
     """
-    => To be filled by student
+    overall = Dataset(schema_name='public',table_name='order_details',col_name=col_name)
+    overall.get_summary_df()
 
 def display_dataframes():
     """
@@ -68,20 +66,18 @@ def display_dataframes():
     --------------------
     Parameters
     --------------------
-    => To be filled by student
-    -> name (type): description
-
+    -> No parameter
     --------------------
     Pseudo-Code
     --------------------
-    => To be filled by student
-    -> pseudo-code
-
+    -> Initialize the Dataset class object with one particular column
+    -> Run get_summary_df function of Dataset class to set the values of class attributes
+    -> Display the output in Streamlit application
     --------------------
     Returns
     --------------------
-    => To be filled by student
-    -> (type): description
+    None
 
     """
-    => To be filled by student
+    explore = Dataset(schema_name='public',table_name='order_details',col_name=col_name)
+    explore.get_summary_df()
