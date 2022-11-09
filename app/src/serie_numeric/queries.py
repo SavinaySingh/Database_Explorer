@@ -22,19 +22,28 @@ def get_negative_number_query(schema_name='', table_name='', col_name=''):
     -> output (str): String for sql query
 
     """
-    if len(schema_name)==0 and len(table_name)==0 and len(col_name)==0:
+    if (schema_name==None and table_name==None and col_name==None) or (schema_name=='' and table_name=='' and col_name==''):
         print('No arguments')
         sys.exit(0)
-    elif table_name==None and col_name==None:
-        print('Empty table and column name string')
+    elif (schema_name==None and table_name==None) or (schema_name=='' and table_name==''):
+        print('Empty schema and table name')
         sys.exit(1)
-    elif table_name==None:
-        print('Empty table name string')
+    elif (schema_name==None and col_name==None) or (schema_name=='' and col_name==''):
+        print('Empty schema and column name')
         sys.exit(2)
-    elif col_name==None:
-        print('Empty column name string')
+    elif (table_name==None and col_name==None) or (table_name=='' and col_name==''):
+        print('Empty table and column name')
         sys.exit(3)
-    return 'select count(*) from {} where {} <0'.format(table_name,col_name)
+    elif schema_name==None:
+        print('Empty schema name')
+        sys.exit(4)
+    elif col_name==None:
+        print('Empty column name')
+        sys.exit(5)
+    elif table_name==None:
+        print('Empty table name')
+        sys.exit(6)
+    return 'select count(*) from {}.{} where {} <0'.format(schema_name,table_name,col_name)
     
 
 def get_std_query(schema_name='', table_name='', col_name=''):
@@ -60,22 +69,31 @@ def get_std_query(schema_name='', table_name='', col_name=''):
     -> output (str): String for sql query
 
     """
-    if len(schema_name)==0 and len(table_name)==0 and len(col_name)==0:
+    if (schema_name==None and table_name==None and col_name==None) or (schema_name=='' and table_name=='' and col_name==''):
         print('No arguments')
-        sys.exit(0)
-    elif table_name==None and col_name==None:
-        print('Empty table and column name string')
-        sys.exit(1)
-    elif table_name==None:
-        print('Empty table name string')
-        sys.exit(2)
+        sys.exit(7)
+    elif (schema_name==None and table_name==None) or (schema_name=='' and table_name==''):
+        print('Empty schema and table name')
+        sys.exit(8)
+    elif (schema_name==None and col_name==None) or (schema_name=='' and col_name==''):
+        print('Empty schema and column name')
+        sys.exit(9)
+    elif (table_name==None and col_name==None) or (table_name=='' and col_name==''):
+        print('Empty table and column name')
+        sys.exit(10)
+    elif schema_name==None:
+        print('Empty schema name')
+        sys.exit(11)
     elif col_name==None:
-        print('Empty column name string')
-        sys.exit(3)
-    return 'select stddev({}) from {}'.format(col_name,table_name)
+        print('Empty column name')
+        sys.exit(12)
+    elif table_name==None:
+        print('Empty table name')
+        sys.exit(13)
+    return 'select stddev({}) from {}.{}'.format(col_name,schema_name,table_name)
 
 
-def get_unique_query(schema_name, table_name, col_name):
+def get_unique_query(schema_name='', table_name='', col_name=''):
     """
     --------------------
     Description
@@ -99,16 +117,25 @@ def get_unique_query(schema_name, table_name, col_name):
     --------------------
     -> output (str): String for sql query
     """
-    if len(schema_name)==0 and len(table_name)==0 and len(col_name)==0:
+    if (schema_name==None and table_name==None and col_name==None) or (schema_name=='' and table_name=='' and col_name==''):
         print('No arguments')
-        sys.exit(0)
-    elif table_name==None and col_name==None:
-        print('Empty table and column name string')
-        sys.exit(1)
-    elif table_name==None:
-        print('Empty table name string')
-        sys.exit(2)
+        sys.exit(14)
+    elif (schema_name==None and table_name==None) or (schema_name=='' and table_name==''):
+        print('Empty schema and table name')
+        sys.exit(15)
+    elif (schema_name==None and col_name==None) or (schema_name=='' and col_name==''):
+        print('Empty schema and column name')
+        sys.exit(16)
+    elif (table_name==None and col_name==None) or (table_name=='' and col_name==''):
+        print('Empty table and column name')
+        sys.exit(17)
+    elif schema_name==None:
+        print('Empty schema name')
+        sys.exit(18)
     elif col_name==None:
-        print('Empty column name string')
-        sys.exit(3)
-    return 'select count(distinct {}) from {}'.format(col_name,table_name)
+        print('Empty column name')
+        sys.exit(19)
+    elif table_name==None:
+        print('Empty table name')
+        sys.exit(20)
+    return 'select count(distinct {}) from {}.{}'.format(col_name,schema_name,table_name)
