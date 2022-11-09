@@ -8,14 +8,14 @@ def get_missing_query(schema_name, table_name, col_name):
     --------------------
     Parameters
     --------------------
-    => To be filled by student
-    -> name (type): description
-
+    -> schema_name (str): Name of the dataset schema
+    -> table_name (str): Name of the dataset table 
+    -> col_name (str): Name of the column 
     --------------------
     Pseudo-Code
     --------------------
     => To be filled by student
-    -> pseudo-code
+    use select statement with count function to extract information table where column name us null.      
 
     --------------------
     Returns
@@ -24,8 +24,9 @@ def get_missing_query(schema_name, table_name, col_name):
     -> (type): description
 
     """
-    => To be filled by student
-
+    query = SELECT COUNT(*) FROM schema_name.table_name WHERE col_name= NULL;
+    return query
+ 
 def get_mode_query(schema_name, table_name, col_name):
     """
     --------------------
@@ -37,7 +38,10 @@ def get_mode_query(schema_name, table_name, col_name):
     Parameters
     --------------------
     => To be filled by student
-    -> name (type): description
+    -> schema_name (str): Name of the dataset schema
+    -> table_name (str): Name of the dataset table 
+    -> col_name (str): Name of the column 
+    --------------------
 
     --------------------
     Pseudo-Code
@@ -52,7 +56,24 @@ def get_mode_query(schema_name, table_name, col_name):
     -> (type): description
 
     """
-    => To be filled by student
+    query = SELECT
+                col_name FROM
+                (SELECT col_name,
+                        cnt,
+                        DENSE_RANK() OVER(ORDER BY cnt DESC
+                        ) as rank
+                    FROM
+                        (SELECT col_name,
+                                COUNT(*) as cnt
+                            FROM
+                                schema_name.table_name
+                            GROUP By
+                                col_name
+                        ) x
+                ) y
+                WHERE
+                rank = 1;
+    return query
 
 def get_alpha_query(schema_name, table_name, col_name):
     """
@@ -65,7 +86,10 @@ def get_alpha_query(schema_name, table_name, col_name):
     Parameters
     --------------------
     => To be filled by student
-    -> name (type): description
+    -> schema_name (str): Name of the dataset schema
+    -> table_name (str): Name of the dataset table 
+    -> col_name (str): Name of the column 
+    --------------------
 
     --------------------
     Pseudo-Code
@@ -80,4 +104,4 @@ def get_alpha_query(schema_name, table_name, col_name):
     -> (type): description
 
     """
-    => To be filled by student
+    return SELECT COUNT(col_name) FROM schema_name.table_name WHERE col_name NOT LIKE '%[^a-zA-Z ]%' AND col_name LIKE '%[a-zA-Z ]%';
