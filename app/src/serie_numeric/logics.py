@@ -34,11 +34,12 @@ class NumericColumn:
     -> frequent (int): Datframe containing the most frequest value of a serie (optional)
     """
 
-    def __init__(self,table_name='order_details',col_name='discount'):
+    def __init__(self,schema_name='public',table_name='order_details',col_name='discount'):
+            self.schema_name=schema_name
             self.table_name=table_name
             self.col_name=col_name
             self.db=PostgresConnector()
-            self.schema_name =self.db.database
+            self.schema_name =schema_name
             self.serie=None
             self.n_unique=None
             self.n_missing=None
@@ -73,7 +74,7 @@ class NumericColumn:
         --------------------
         -> None
         """
-        self.serie = sqlio.read_sql_query('select {} from {}'.format(self.col_name,self.table_name), self.db.conn)[self.col_name]
+        self.serie = sqlio.read_sql_query('select {} from {}.{}'.format(self.col_name,self.schema_name,self.table_name), self.db.conn)[self.col_name]
 
         
     def is_serie_none(self):
@@ -119,7 +120,7 @@ class NumericColumn:
         --------------------
         None
         """
-        sql=get_unique_query(self.db.database,self.table_name,self.col_name)
+        sql=get_unique_query(self.schema_name,self.table_name,self.col_name)
         self.n_unique=sqlio.read_sql_query(sql,self.db.conn)['count'][0]
 
     def set_missing(self):
@@ -185,7 +186,7 @@ class NumericColumn:
         --------------------
         None
         """
-        sql=get_negative_number_query(self.db.database,self.table_name,self.col_name)
+        sql=get_negative_number_query(self.schema_name,self.table_name,self.col_name)
         self.n_negatives=sqlio.read_sql_query(sql,self.db.conn)['count'][0]
 
     def set_mean(self):
@@ -231,7 +232,7 @@ class NumericColumn:
         --------------------
         None
         """
-        sql=get_std_query(self.db.database,self.table_name,self.col_name)
+        sql=get_std_query(self.schema_name,self.table_name,self.col_name)
         self.col_std=sqlio.read_sql_query(sql,self.db.conn)['stddev'][0]
 
     def set_min(self):
@@ -316,8 +317,7 @@ class NumericColumn:
         --------------------
         None
         """
-        self.histogram=alt.Chart(pd.DataFrame(self.serie)).mark_bar().encode(x = self.col_name,
-                                             y = 'count()')
+        self.histogram=alt.Chart(pd.DataFrame(self.serie)).mark_bar().encode(x = self.col_name,y = 'count()')
 
     def set_frequent(self, end=20):
         """
