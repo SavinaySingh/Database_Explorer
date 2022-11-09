@@ -1,1 +1,31 @@
-=> to be filled by student
+version: '3'
+services:
+    db:
+        image: postgres
+        restart: always
+        environment:
+          - POSTGRES_USER=postgres
+          - POSTGRES_PASSWORD=password123X
+        ports:
+          - 5432:5432
+        networks:
+          - deploy_network
+        volumes:
+          - db:/var/lib/postgresql/data
+        container_name: postgres_db
+    streamlit_app:
+        build: app/.
+        depends_on:
+          - db
+        ports:
+          - 8501:8501
+        networks:
+          - deploy_network
+        container_name: streamlit_app
+volumes:
+  db:
+    driver: local
+
+networks:
+    deploy_network:
+        driver: bridge
