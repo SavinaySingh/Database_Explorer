@@ -293,7 +293,7 @@ class DateColumn:
         None
 
         """
-        self.n_empty_1970 = len(self.serie.isin([''1970-01-01']))
+        self.n_empty_1970 = len(self.serie.isin(['1970-01-01']))
 `        
     def set_barchart(self):  
         """
