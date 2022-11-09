@@ -1,4 +1,4 @@
-# STREAMLIT APPLICATION!
+# Database Explorer Web App
 
 ## Author
 Name: Savinay Singh\
