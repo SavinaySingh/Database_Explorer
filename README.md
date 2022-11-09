@@ -29,6 +29,7 @@ Future work:
 2.	Serie_date, Serie_Numeric and Serie_text can all be merged into one module as they all have similar functionalities.
 3.	The application's front end and back end may be independent, which would make the application's programming simpler.
 </pre>
+    
 ## How to Setup
 <Provide a step-by-step description of how to get the development environment set and running.>
 <pre>
@@ -42,6 +43,7 @@ Future work:
 <Which Python version you used>
 <Which packages and version you used>
 <pre>
+Requirements
 python==3.8.2
 psycopg2-binary==2.9.5
 pandas==1.5.1
