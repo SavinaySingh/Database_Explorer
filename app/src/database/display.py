@@ -84,33 +84,5 @@ def connect_db():
     P1.close_cursor()
     P1.close_connection()
 
-def display_table_selection():
-    """
-    --------------------
-    Description
-    --------------------
-    -> display_table_selection (function): Function that displays the selection box for selecting the table to be analysed and triggers the loading of data (read_data())
-
-    --------------------
-    Parameters
-    --------------------
-    => To be filled by student
-    -> name (type): description
-
-    --------------------
-    Pseudo-Code
-    --------------------
-    => To be filled by student
-    -> pseudo-code
-
-    --------------------
-    Returns
-    --------------------
-    => To be filled by student
-    -> (type): description
-
-    """
-
-
 
 
