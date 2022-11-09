@@ -49,14 +49,23 @@ def connect_db():
     --------------------
     Parameters
     --------------------
-    => To be filled by student
+    => Insstantiate the Postegreconnctor to connect the database
+    then declare a cursor to connect to the table and fetch the details
     -> name (type): description
 
     --------------------
     Pseudo-Code
     --------------------
-    => To be filled by student
-    -> pseudo-code
+    => 
+    P1 = PostgresConnector()
+    P1.open_connection()
+    P1.open_cursor()
+    P1.list_tables()
+    P1.load_table('public','django_migrations')
+    P1.get_table_schema('public','django_migrations')
+    P1.close_cursor()
+    P1.close_connection()
+
 
     --------------------
     Returns
