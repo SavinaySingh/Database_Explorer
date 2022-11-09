@@ -8,7 +8,7 @@ Student ID: 24587331\
 Name: Sagar Sudhir Bhagwatkar\
 Student ID: 24613616\
 Name: Steffi Grace Tensingh\
-Student ID: 24592774\
+Student ID: 24592774
 
 ## Description
 <What your application does>
