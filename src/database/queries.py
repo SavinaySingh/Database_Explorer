@@ -14,14 +14,14 @@ def get_tables_list_query():
     --------------------
     Pseudo-Code
     --------------------
-    => To be filled by student
+    =>return("select table_name from information_schema.tables")
     -> pseudo-code
 
     --------------------
     Returns
     --------------------
-    => To be filled by student
-    -> (type): description
+    =>return("select * from "+schema_name+"."+table_name+";")
+
 
     """
 	return("select table_name from information_schema.tables")
@@ -35,20 +35,17 @@ def get_table_data_query(schema_name, table_name):
     --------------------
     Parameters
     --------------------
-    => To be filled by student
-    -> name (type): description
-
+    => Schema name and table name
     --------------------
     Pseudo-Code
     --------------------
-    => To be filled by student
-    -> pseudo-code
+    =>return("select * from "+schema_name+"."+table_name+";")
 
-    --------------------
+   
     Returns
     --------------------
-    => To be filled by student
-    -> (type): description
+    => return("select * from "+schema_name+"."+table_name+";")
+
 
     """
 	return("select * from "+schema_name+"."+table_name+";")
@@ -64,20 +61,19 @@ def get_table_schema_query(schema_name, table_name):
     --------------------
     Parameters
     --------------------
-    => To be filled by student
-    -> name (type): description
+    =>  Schema name and table name
 
     --------------------
     Pseudo-Code
     --------------------
-    => To be filled by student
-    -> pseudo-code
+   	return("SELECT column_name, data_type FROM information_schema.columns WHERE  table_name = '"+table_name+"' AND table_schema = '"+schema_name+"';")
+
 
     --------------------
     Returns
     --------------------
-    => To be filled by student
-    -> (type): description
+   	return("SELECT column_name, data_type FROM information_schema.columns WHERE  table_name = '"+table_name+"' AND table_schema = '"+schema_name+"';")
+
 
     """
 	return("SELECT column_name, data_type FROM information_schema.columns WHERE  table_name = '"+table_name+"' AND table_schema = '"+schema_name+"';")
