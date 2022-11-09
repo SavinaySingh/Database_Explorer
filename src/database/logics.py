@@ -41,13 +41,12 @@ class PostgresConnector:
         --------------------
         Parameters
         --------------------
-        => To be filled by student
-        -> name (type): description
+        => fetch the parameters used for the connection like usename password, port, host and database name
 
         --------------------
         Pseudo-Code
         --------------------
-        => To be filled by student
+        =>  self.conn = psycopg2.connect(dbname=self.database, user=self.user, password=self.password, port=self.port, host=self.host)
         -> pseudo-code
 
         --------------------
@@ -81,13 +80,13 @@ class PostgresConnector:
         --------------------
         Parameters
         --------------------
-        => To be filled by student
+        => To close the opened connection Connection variable
         -> name (type): description
 
         --------------------
         Pseudo-Code
         --------------------
-        => To be filled by student
+        =>  self.conn.close()
         -> pseudo-code
 
         --------------------
@@ -120,7 +119,7 @@ class PostgresConnector:
         --------------------
         Pseudo-Code
         --------------------
-        => To be filled by student
+        =>    self.cursor = self.conn.cursor()
         -> pseudo-code
 
         --------------------
@@ -146,13 +145,13 @@ class PostgresConnector:
         --------------------
         Parameters
         --------------------
-        => To be filled by student
+        =>  self.cursor.close()
         -> name (type): description
 
         --------------------
         Pseudo-Code
         --------------------
-        => To be filled by student
+        =>  self.cursor.close()
         -> pseudo-code
 
         --------------------
@@ -169,58 +168,10 @@ class PostgresConnector:
             sys.exit(53)
 
     def run_query(self, sql_query):
-        """
-        --------------------
-        Description
-        --------------------
-        -> run_query (method): Class method that executes a SQL query and returns the result as a Pandas dataframe
-
-        --------------------
-        Parameters
-        --------------------
-        => To be filled by student
-        -> name (type): description
-
-        --------------------
-        Pseudo-Code
-        --------------------
-        => To be filled by student
-        -> pseudo-code
-
-        --------------------
-        Returns
-        --------------------
-        => To be filled by student
-        -> (type): description
-
-        """
+       
 
     def list_tables(self):
-        """
-        --------------------
-        Description
-        --------------------
-        -> list_tables (method): Class method that extracts the list of available tables using a SQL query (get_tables_list_query())
-
-        --------------------
-        Parameters
-        --------------------
-        => To be filled by student
-        -> name (type): description
-
-        --------------------
-        Pseudo-Code
-        --------------------
-        => To be filled by student
-        -> pseudo-code
-
-        --------------------
-        Returns
-        --------------------
-        => To be filled by student
-        -> (type): description
-
-        """
+        
         try:
             """
             self.cursor.execute('select table_name from information_schema.tables')
@@ -240,32 +191,7 @@ class PostgresConnector:
 
 
     def load_table(self, schema_name, table_name):
-        """"
-        --------------------
-        Description
-        --------------------
-        -> load_table (method): Class method that load the content of a table using a SQL query (get_table_data_query())
-
-        --------------------
-        Parameters
-        --------------------
-        => To be filled by student
-        -> name (type): description
-
-        --------------------
-        Pseudo-Code
-        --------------------
-        => To be filled by student
-        -> pseudo-code
-
-        --------------------
-        Returns
-        --------------------
-        => To be filled by student
-        -> (type): description
-
-        """
-
+        
         try:
             """
             load_table= pd.read_sql_query("select * from "+schema_name+"."+table_name+";", self.conn)
@@ -278,31 +204,7 @@ class PostgresConnector:
             sys.exit(53)
 
     def get_table_schema(self, schema_name, table_name):
-        """
-        --------------------
-        Description
-        --------------------
-        -> get_table_schema (method): Class method that extracts the schema information of a table using a SQL query (get_table_schema_query())
-
-        --------------------
-        Parameters
-        --------------------
-        => To be filled by student
-        -> name (type): description
-
-        --------------------
-        Pseudo-Code
-        --------------------
-        => To be filled by student
-        -> pseudo-code
-
-        --------------------
-        Returns
-        --------------------
-        => To be filled by student
-        -> (type): description
-
-        """
+      
         try:
             """
             get_table_schema = pd.read_sql_query("SELECT column_name, data_type FROM information_schema.columns "
