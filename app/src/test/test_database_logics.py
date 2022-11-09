@@ -1,9 +1,15 @@
 import unittest
-import pandas as pd
+from logics import PostgresConnector
+class TestDBLogics(unittest.TestCase):
+   def Test_User(self):
+       Expected=str
+       Result=type(user)
+       self.assertEqual(Expected, Result)
 
-from src.database.logics import PostgresConnector
-
-=> To be filled by student
-
+   def Test_Password(self):
+       Expected = str
+       Result = type(Password)
+       self.assertEqual(Expected, Result)
+  
 if __name__ == '__main__':
     unittest.main(verbosity=2)
