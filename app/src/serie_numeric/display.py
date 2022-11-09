@@ -30,14 +30,17 @@ def display_numerics():
     --------------------
     None
     """
-    table_name='order_details'
-    sql='select * from {}'.format(table_name)
+    table_name=st.session_state['table_selected']
+    schema_name=st.session_state['schema_selected']
+#    table_name='order_details'
+#    schema_name='public'
+    sql='select * from {}.{}'.format(schema_name,table_name)
     dat = sqlio.read_sql_query(sql, db.conn)
     numerics = ['int16', 'int32', 'int64', 'float16', 'float32', 'float64']
     newdf = dat.select_dtypes(include=numerics)
     numeric_cols=list(newdf.columns)
     for cols in numeric_cols:
-        numeric=NumericColumn(table_name='order_details',col_name=cols)
+        numeric=NumericColumn(schema_name,table_name=table_name,col_name=cols)
         numeric.get_summary_df()
     
     
