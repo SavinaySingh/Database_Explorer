@@ -44,7 +44,6 @@ DSP_AT3_16-main/
         requirements.txt
         Dockerfile
         streamlit_app.py
-        test.py
         src/
             .DS_Store
             config.py
