@@ -34,17 +34,22 @@ class NumericColumn:
     -> frequent (int): Datframe containing the most frequest value of a serie (optional)
     """
 
-    def __init__(self,schema_name,table_name,col_name):
+    def __init__(self,schema_name='public',table_name='order_details',col_name='order_id'):
         '''As the student B was unable to complete the config file, I have set the session_state within this function. In order to run my part, the following steps needs to be taken:
         1. In logics.py change "from queries import get_tables_list_query, get_table_data_query, get_table_schema_query" to "from src.database.queries import get_tables_list_query, get_table_data_query, get_table_schema_query"
         2. Comment out the incomplete function run_query(self, sql_query)
         3. Comment out the expander in the open_connection() in logics.py as it will lead to nested expanders '''
-        if 'db' not in st.session_state:
-            st.session_state['db'] = PostgresConnector()
+        
+#        if 'db' not in st.session_state:
+#            st.session_state['db'] = PostgresConnector()
+        '''
+        If config file was complete
+        self.db=st.session_state['db']
+        '''
+        self.db=PostgresConnector()
         self.schema_name=schema_name
         self.table_name=table_name
         self.col_name=col_name
-        self.db=st.session_state['db']
         self.schema_name =schema_name
         self.serie=None
         self.n_unique=None
