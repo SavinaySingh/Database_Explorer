@@ -1,3 +1,5 @@
+from cmath import isnan
+from queue import Empty
 import streamlit as st
 import pandas as pd
 import altair as alt
@@ -34,7 +36,11 @@ class TextColumn:
 
     """
     def __init__(self, schema_name=None, table_name=None, col_name=None, db=None, serie=None):
-        => To be filled by student
+        self.schema_name = schema_name
+        self.table_name = table_name
+        self.col_name = col_name
+        self.db = db
+        self.serie = serie 
     
     def set_data(self):
         """
@@ -46,14 +52,12 @@ class TextColumn:
         --------------------
         Parameters
         --------------------
-        => To be filled by student
         -> name (type): description
 
         --------------------
         Pseudo-Code
         --------------------
-        => To be filled by student
-        -> pseudo-code
+        -> use st.table function to display all relevent infomation in a table format in the Text section of Streamlit app
 
         --------------------
         Returns
@@ -62,7 +66,7 @@ class TextColumn:
         -> (type): description
 
         """
-        => To be filled by student
+        return st.table({'Description':['Number of unique values','Number of rows with missing values','Number of empty rows','Number of rows with only whitespace','Number of rows with only lowercases','Number of rows with only uppercases','Number of rows with only Alphabet','Number of rows with only digits','Mode value'],'Value':[self.set_unique(),self.set_missing(),self.set_empty(),self.set_whitespace(),self.set_lowercase(),self.set_uppercase(),self.set_alphabet(),self.set_digit(),self.set_mode()]})
       
     def is_serie_none(self):
         """
@@ -74,15 +78,12 @@ class TextColumn:
         --------------------
         Parameters
         --------------------
-        => To be filled by student
-        -> name (type): description
+        serie (pd.Series): Pandas serie where the content of a column has been loaded
 
         --------------------
         Pseudo-Code
         --------------------
-        => To be filled by student
-        -> pseudo-code
-
+        -> use if else statement to check if the series is empty or not, if its empty print the total number of empty cells.
         --------------------
         Returns
         --------------------
@@ -90,7 +91,13 @@ class TextColumn:
         -> (type): description
 
         """
-        => To be filled by student
+        if self.serie.isnull().sum() > 0:
+            return self.serie.isnull().sum()
+        elif self.serie.isna().sum() == 0:
+            return self.serie.isna().sum()
+        elif self.serie.isna().sum() >0:
+            return self.serie.isna().sum()
+        
 
     def set_unique(self):
         """
@@ -102,14 +109,12 @@ class TextColumn:
         --------------------
         Parameters
         --------------------
-        => To be filled by student
-        -> name (type): description
+        serie (pd.Series): Pandas serie where the content of a column has been loaded
 
         --------------------
         Pseudo-Code
         --------------------
-        => To be filled by student
-        -> pseudo-code
+        -> use nunique() function of python to computes the number of unique value of a serie
 
         --------------------
         Returns
@@ -118,7 +123,7 @@ class TextColumn:
         -> (type): description
 
         """
-        => To be filled by student
+        return self.serie.nunique()
 
     def set_missing(self):
         """
@@ -130,14 +135,14 @@ class TextColumn:
         --------------------
         Parameters
         --------------------
-        => To be filled by student
-        -> name (type): description
+        serie (pd.Series): Pandas serie where the content of a column has been loaded
+        schema_name (str): Name of the dataset schema 
+        table_name (str): Name of the dataset table 
 
         --------------------
         Pseudo-Code
         --------------------
-        => To be filled by student
-        -> pseudo-code
+        -> use sql query (get_missing_query()) from queries.py file to compute the number of missing value
 
         --------------------
         Returns
@@ -146,7 +151,7 @@ class TextColumn:
         -> (type): description
 
         """
-        => To be filled by student
+        return self.db.run_query(get_missing_query(schema_name, table_name, serie))
 
     def set_empty(self):
         """
@@ -158,14 +163,12 @@ class TextColumn:
         --------------------
         Parameters
         --------------------
-        => To be filled by student
-        -> name (type): description
+        serie (pd.Series): Pandas serie where the content of a column has been loaded
 
         --------------------
         Pseudo-Code
         --------------------
-        => To be filled by student
-        -> pseudo-code
+        -> use isna().sum() of python on self.serie
 
         --------------------
         Returns
@@ -174,7 +177,7 @@ class TextColumn:
         -> (type): description
 
         """
-        => To be filled by student
+        return self.serie.isna().sum()
 
     def set_mode(self):
         """
@@ -186,15 +189,14 @@ class TextColumn:
         --------------------
         Parameters
         --------------------
-        => To be filled by student
-        -> name (type): description
+        schema_name (str): Name of the dataset schema 
+        table_name (str): Name of the dataset table
+        col_name (str): Name of the column 
 
         --------------------
         Pseudo-Code
         --------------------
-        => To be filled by student
-        -> pseudo-code
-
+        -> use sql query (get_mode_query()) from queries.py file to compute the mode value of a serie
         --------------------
         Returns
         --------------------
@@ -202,7 +204,7 @@ class TextColumn:
         -> (type): description
 
         """
-        => To be filled by student
+        return self.db.run_query(get_mode_query(self.schema_name, self.table_name, self.col_name)) 
 
     def set_whitespace(self):
         """
@@ -214,14 +216,12 @@ class TextColumn:
         --------------------
         Parameters
         --------------------
-        => To be filled by student
-        -> name (type): description
+        serie (pd.Series): Pandas serie where the content of a column has been loaded
 
         --------------------
         Pseudo-Code
         --------------------
-        => To be filled by student
-        -> pseudo-code
+        -> use str.isspace().sum() python function to compute the number of times a serie has only space characters
 
         --------------------
         Returns
@@ -230,7 +230,10 @@ class TextColumn:
         -> (type): description
 
         """
-        => To be filled by student
+        return self.serie.str.isspace().sum() 
+        #https://stackoverflow.com/questions/72477286/count-number-of-consecutive-spaces-in-series
+        #https://pandas.pydata.org/docs/reference/api/pandas.Series.str.isspace.html
+
 
     def set_lowercase(self):
         """
@@ -242,14 +245,12 @@ class TextColumn:
         --------------------
         Parameters
         --------------------
-        => To be filled by student
-        -> name (type): description
+        serie (pd.Series): Pandas serie where the content of a column has been loaded
 
         --------------------
         Pseudo-Code
         --------------------
-        => To be filled by student
-        -> pseudo-code
+        -> use str.islower().sum() python function to compute the number of times a serie has only lowercase characters
 
         --------------------
         Returns
@@ -258,7 +259,7 @@ class TextColumn:
         -> (type): description
 
         """
-        => To be filled by student
+        return self.serie.str.islower().sum()
 
     def set_uppercase(self):
         """
@@ -267,11 +268,11 @@ class TextColumn:
         --------------------
         -> set_uppercase (method): Class method that computes the number of times a serie has only uppercase characters
 
-        --------------------
+        -------------------- 
         Parameters
         --------------------
         => To be filled by student
-        -> name (type): description
+        serie (pd.Series): Pandas serie where the content of a column has been loaded
 
         --------------------
         Pseudo-Code
@@ -286,7 +287,7 @@ class TextColumn:
         -> (type): description
 
         """
-        => To be filled by student
+        return self.serie.str.isupper().sum()
     
     def set_alphabet(self):
         """
@@ -299,7 +300,9 @@ class TextColumn:
         Parameters
         --------------------
         => To be filled by student
-        -> name (type): description
+        schema_name (str): Name of the dataset schema 
+        table_name (str): Name of the dataset table
+        col_name (str): Name of the column 
 
         --------------------
         Pseudo-Code
@@ -314,7 +317,7 @@ class TextColumn:
         -> (type): description
 
         """
-        => To be filled by student
+        return self.db.run_query(get_alpha_query(self.schema_name, self.table_name, self.col_name))
 
     def set_digit(self):
         """
@@ -327,8 +330,7 @@ class TextColumn:
         Parameters
         --------------------
         => To be filled by student
-        -> name (type): description
-
+        serie (pd.Series): Pandas serie where the content of a column has been loaded
         --------------------
         Pseudo-Code
         --------------------
@@ -342,7 +344,7 @@ class TextColumn:
         -> (type): description
 
         """
-        => To be filled by student
+        return self.serie.str.isdigit().sum()
 
     def set_barchart(self):  
         """
@@ -355,7 +357,7 @@ class TextColumn:
         Parameters
         --------------------
         => To be filled by student
-        -> name (type): description
+        serie (pd.Series): Pandas serie where the content of a column has been loaded
 
         --------------------
         Pseudo-Code
@@ -370,7 +372,9 @@ class TextColumn:
         -> (type): description
 
         """
-        => To be filled by student
+        df = self.serie.to_frame()
+        data = alt.Chart(df).mark_bar().encode( x='index', y=0)
+        st.altair_chart(data, use_container_width=True)
       
     def set_frequent(self, end=20):
         """
@@ -383,7 +387,7 @@ class TextColumn:
         Parameters
         --------------------
         => To be filled by student
-        -> name (type): description
+        serie (pd.Series): Pandas serie where the content of a column has been loaded
 
         --------------------
         Pseudo-Code
@@ -398,7 +402,9 @@ class TextColumn:
         -> (type): description
 
         """
-        => To be filled by student
+        countfreq = self.serie.value_counts()
+        countfreq = countfreq.to_frame()
+        st.dataframe(countfreq.head(end))
 
     def get_summary_df(self):
         """
@@ -426,4 +432,4 @@ class TextColumn:
         -> (type): description
 
         """
-        => To be filled by student
+        return st.table({'Description':['Number of unique values','Number of rows with missing values','Number of empty rows','Number of rows with only whitespace','Number of rows with only lowercases','Number of rows with only uppercases','Number of rows with only Alphabet','Number of rows with only digits','Mode value'],'Value':[self.set_unique(),self.set_missing(),self.set_empty(),self.set_whitespace(),self.set_lowercase(),self.set_uppercase(),self.set_alphabet(),self.set_digit(),self.set_mode()]})
