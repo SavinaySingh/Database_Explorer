@@ -4,7 +4,7 @@
 <What your application does>
 The application is a database explorer that first extablishes a connection to a postgres database and then stores the table in the form of pandas dataframe. Then it displays the output analysis in five tabs: Overall, Numeric, Explore, Text and Date. 
 
-<div style="text-align:center">
+<div align="center">
   <img width="603" alt="image" src="https://github.com/SavinaySingh/Database_Explorer/assets/21008903/c899c9ac-de1c-4879-b2cf-9e4326bdbb93">
 </div>
 
