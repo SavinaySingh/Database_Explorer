@@ -1,15 +1,5 @@
 # Database Explorer Web App
 
-## Author
-Name: Savinay Singh\
-Student ID: 24591935\
-Name: Prinston Mascarenhas\
-Student ID: 24587331\
-Name: Sagar Sudhir Bhagwatkar\
-Student ID: 24613616\
-Name: Steffi Grace Tensingh\
-Student ID: 24592774
-
 ## Description
 <What your application does>
 The application is a database explorer that first extablishes a connection to a postgres database and then stores the table in the form of pandas dataframe. Then it displays the output analysis in five tabs: Overall, Numeric, Explore, Text and Date. 
@@ -124,3 +114,13 @@ DSP_AT3_16-main/
 1. PSYCOPG2. PyPI. (2022, October 25). Retrieved from https://pypi.org/project/psycopg2/ 
 2. Vega-Altair: Declarative visualization in python. Altair. (n.d.). Retrieved from https://altair-viz.github.io/ 
 </pre>
+
+## Author
+Name: Savinay Singh\
+Student ID: 24591935\
+Name: Prinston Mascarenhas\
+Student ID: 24587331\
+Name: Sagar Sudhir Bhagwatkar\
+Student ID: 24613616\
+Name: Steffi Grace Tensingh\
+Student ID: 24592774
